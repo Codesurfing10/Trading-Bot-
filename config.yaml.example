@@ -1,0 +1,48 @@
+# ──────────────────────────────────────────────────────────
+# Schwab Trading Bot — example configuration
+# Copy to config.yaml and fill in your values.
+# Environment variables always override values here.
+# ──────────────────────────────────────────────────────────
+
+scanner:
+  # URL of the Trade Scanner stocks.json published to GitHub Pages
+  url: https://codesurfing10.github.io/Trade-Scanner-2/stocks.json
+  timeout_seconds: 30
+
+trading:
+  # Maximum number of concurrent open positions
+  max_positions: 2
+  # USD notional allocated per new position
+  block_size: 1000.0
+  # Stop-loss percentage below entry (2.5 = −2.5 %)
+  stop_loss_pct: 2.5
+  # Maximum holding period in trading days
+  max_hold_days: 5
+  # RSI threshold above which a stock is considered overbought (will not buy)
+  rsi_overbought: 70.0
+
+take_profit:
+  # Tranche 1: sell this fraction of original shares when gain reaches tranche_1_pct
+  tranche_1_pct: 5.0
+  tranche_1_sell_fraction: 0.50   # sell 50 % of original shares
+  # Tranche 2: sell this fraction of original shares when gain reaches tranche_2_pct
+  tranche_2_pct: 10.0
+  tranche_2_sell_fraction: 0.25   # sell 25 % of original shares
+  # Tranche 3: sell this fraction of original shares when gain reaches tranche_3_pct
+  tranche_3_pct: 25.0
+  tranche_3_sell_fraction: 0.25   # sell 25 % of original shares
+  # Hard exit: close any remaining position at this gain regardless of tranche status
+  hard_exit_pct: 30.0
+
+schwab:
+  # Must match the redirect URI registered in your Schwab developer app
+  redirect_uri: https://127.0.0.1
+  # File that stores OAuth tokens between restarts
+  tokens_file: tokens.json
+
+bot:
+  # true → log orders but never place real trades
+  dry_run: true
+  poll_interval_seconds: 300
+  state_file: state.json
+  log_level: INFO

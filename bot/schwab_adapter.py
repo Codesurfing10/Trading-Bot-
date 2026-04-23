@@ -271,7 +271,13 @@ class SchwabAdapter:
                 quantity,
                 symbol,
             )
-            return {"dry_run": True, "symbol": symbol, "quantity": quantity, "side": side, "order_type": order_desc}
+            return {
+                "dry_run": True,
+                "symbol": symbol,
+                "quantity": quantity,
+                "side": side,
+                "order_type": order_desc,
+            }
 
         self.ensure_authenticated()
         url = f"{_TRADER_BASE}/accounts/{self._account_hash}/orders"
